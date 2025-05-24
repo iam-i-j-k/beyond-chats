@@ -86,7 +86,7 @@ const Chatbox = ({ user, sidebarOpen, onClose }) => {
         <div className="flex-1 overflow-y-auto max-h-[calc(100%-40%)] p-2 md:p-4">
           <div className="max-w-[80%]">
             <div className="rounded-lg bg-gray-100 dark:bg-gray-800 p-3">
-              <p className="text-xs text-gray-800 dark:text-gray-100">
+              <p className="text-xs text-gray-800 dark:text-gray-100 leading-5">
                 I bought a product from your store in November as a Christmas gift for a member of my family. However,
                 it turns out they have something very similar already. I was hoping you'd be able to refund me, as it
                 is un-opened.
