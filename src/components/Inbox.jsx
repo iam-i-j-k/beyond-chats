@@ -115,7 +115,7 @@ const Inbox = ({ open, setOpen, selectedUser, setSelectedUser, readChats }) => {
                   className='flex cursor-pointer items-center pointer'
                   onClick={() => setCollapsed((prev) => !prev)}
                 >
-                  <h2 className='p-1 text-md font-medium tracking-tight'>
+                  <h2 className='p-1 text-xs font-base tracking-tight'>
                     {Users.length} Open
                   </h2>
                   <ChevronDown className={`w-4 h-4 transition-transform ${collapsed ? 'rotate-180' : ''}`} />
@@ -127,7 +127,7 @@ const Inbox = ({ open, setOpen, selectedUser, setSelectedUser, readChats }) => {
                   onClick={() => setSortAsc((prev) => !prev)}
                   title="Sort by waiting time"
                 >
-                  <h2 className='p-2 text-md font-medium tracking-tight'>
+                  <h2 className='p-2 text-xs font-base tracking-tight'>
                     Waiting longest
                   </h2>
                   {sortAsc ? (

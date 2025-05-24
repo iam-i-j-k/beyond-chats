@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from 'react'
-import { ArrowUp, CircleChevronLeft, CircleChevronRight, MoveUp, PanelLeftClose, PanelRightClose } from 'lucide-react'
+import { ArrowUp, CircleChevronLeft, CircleChevronRight, MoveUp, PanelLeftClose, PanelRight, PanelRightClose } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 // Create a context to communicate with Chatbox (if not already present)
@@ -88,13 +88,13 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
     <>
       {/* Floating button at bottom-right */}
     {!open && (
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-6 right-1 z-50">
         <button
           className="bg-white cursor-pointer shadow-lg rounded-full p-3 hover:bg-gray-200 transition"
           title={open ? "Close AI Copilot" : "Open AI Copilot"}
           onClick={() => setOpen(!open)}
         >
-            <PanelLeftClose className="w-7 h-7" />
+            <PanelLeftClose className="w-5 h-5" />
         </button>
       </div>
     )}
@@ -149,7 +149,7 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
                     title="Close AI Copilot"
                     onClick={() => setOpen(false)}
                 >
-                    <PanelRightClose className="w-3 h-3" />
+                    <PanelRightClose className="w-5 h-5" />
                 </button>
                 </div>
 
