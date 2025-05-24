@@ -209,7 +209,7 @@ const Inbox = ({ open, setOpen, selectedUser, setSelectedUser, readChats }) => {
         )}
       </AnimatePresence>
       {!open && (
-        <div className="fixed top-2 left-2 z-50">
+        <div className="fixed top-2 left-2 z-39">
           <button
             className="cursor-pointer p-3 transition"
             title="Open Inbox"
