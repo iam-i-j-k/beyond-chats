@@ -50,7 +50,7 @@ const App = () => {
             />
           </div>
           <div className={finAiOpen ? 'md:w-[33%] w-full' : 'md:w-[4%] w-12'}>
-            <FinAI open={finAiOpen} setOpen={setFinAiOpen} />
+            <FinAI open={finAiOpen} setOpen={setFinAiOpen} sidebarOpen={sidebarOpen} />
           </div>
           <motion.div
             animate={{

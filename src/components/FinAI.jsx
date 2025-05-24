@@ -118,7 +118,7 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
             animate="visible"
             exit="exit"
             variants={sidebarVariants}
-            className="transition-colors fixed right-0 top-0 h-full w-full md:w-[28%] min-w-[260px] bg-gray-100 dark:bg-gray-900 z-40 flex flex-col"
+            className="transition-colors fixed right-0 top-0 h-screen w-full md:w-[28%] min-w-[260px] bg-gray-100 dark:bg-gray-900 z-40 flex flex-col"
             {...handlers}
           >
             <div className="relative flex w-full border-b-1 border-gray-300 dark:border-gray-700 space-x-5 h-[8%] p-2 items-center justify-start">

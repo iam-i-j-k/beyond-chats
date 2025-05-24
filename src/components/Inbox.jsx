@@ -209,7 +209,11 @@ const Inbox = ({ open, setOpen, selectedUser, setSelectedUser, readChats }) => {
         )}
       </AnimatePresence>
       {!open && (
-        <div className={`fixed top-2 left-2 ${finAiOpen ? 'z-30' : 'z-39'}`}>
+        <div
+          className={`fixed top-2 left-2 ${
+            finAiOpen ? 'z-30 md:z-39' : 'z-39'
+          }`}
+        >
           <button
             className="cursor-pointer p-3 transition"
             title="Open Inbox"
