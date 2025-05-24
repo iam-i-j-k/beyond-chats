@@ -16,12 +16,12 @@ const Chatbox = ({ user, sidebarOpen, onClose }) => {
 
   return (
     <div className="transition-colors h-screen w-full flex flex-col bg-white dark:bg-gray-900">
-      <div className="flex items-center justify-between sm:justify-center h-[8%] p-2 border-b-1 border-gray-300 dark:border-gray-700">
-        <h1 className="text-sm sm:text-md md:text-xl font-medium tracking-tight">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between h-auto sm:h-[8%] p-2 border-b-1 border-gray-300 dark:border-gray-700">
+        <h1 className="text-base sm:text-lg md:text-2xl font-medium tracking-tight text-center sm:text-left w-full sm:w-auto">
           {user ? user.name ? user.name : user.title : "Select a chat"}
         </h1>
         {user && (
-          <div className="flex items-center gap-2 relative">
+          <div className="flex items-center gap-2 mt-2 sm:mt-0 self-center sm:self-auto">
             <button
               className="p-1 sm:p-2 rounded cursor-pointer transition"
               title="Options"
