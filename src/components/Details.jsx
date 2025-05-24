@@ -23,7 +23,7 @@ export default function Sidebar() {
   ]
 
   return (
-    <div className="w-full h-screen overflow-y-auto">
+    <div className="w-full h-screen overflow-y-auto transition-colors">
       <div className="p-4 space-y-6">
         {/* Assignee Section */}
         <div className="space-y-3">

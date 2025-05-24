@@ -22,7 +22,7 @@ const App = () => {
 
   return (
     <ChatboxInputContext.Provider value={{ chatboxInput, setChatboxInput }}>
-      <div className="relative bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+      <div className="relative transition-colors bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
         <div className="flex flex-col md:flex-row w-full h-screen bg-gray-50 dark:bg-gray-800">
           <Inbox
             open={sidebarOpen}

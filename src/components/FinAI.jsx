@@ -109,7 +109,7 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
             animate="visible"
             exit="exit"
             variants={sidebarVariants}
-            className="fixed right-0 top-0 h-screen w-full md:w-[28%] min-w-[260px] bg-gray-100 dark:bg-gray-900 z-40 flex flex-col"
+            className="transition-colors fixed right-0 top-0 h-screen w-full md:w-[28%] min-w-[260px] bg-gray-100 dark:bg-gray-900 z-40 flex flex-col"
           >
             <div className="relative flex w-full border-b-1 border-gray-300 dark:border-gray-700 space-x-5 h-[8%] p-2 items-center justify-start">
               <div
@@ -138,7 +138,7 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
                 </div>
               </div>
               <span
-                className={`absolute bottom-0 transition-all duration-200 h-[3px] rounded bg-[rgba(98,98,198,1)]`}
+                className={`absolute bottom-0 transition-all duration-300 h-[3px] rounded bg-[rgba(98,98,198,1)]`}
                 style={{
                   left: selectedTab === 'copilot' ? '0%' : '120px',
                   width: selectedTab === 'copilot' ? '110px' : '45px',

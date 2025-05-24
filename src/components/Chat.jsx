@@ -200,10 +200,10 @@ const Chat = ({ messages, setMessages }) => {
   // You can use a library like draft-js-toolbar-plugin for more advanced toolbars
 
   return (
-    <form className="p-2 md:p-3 bg-white dark:bg-gray-900 flex flex-col items-start rounded-2xl w-full" onSubmit={handleSend}>
+    <form className="transition-colors p-2 md:p-3 bg-white dark:bg-gray-900 flex flex-col items-start rounded-2xl w-full" onSubmit={handleSend}>
       <div className="flex flex-col items-start mb-2">
         <div className="flex items-center">
-          <div className="flex h-5 w-5 items-center opacity-80 justify-center rounded bg-transparent">
+          <div className="flex h-5 w-5 items-center opacity-80 dark:opacity-90 justify-center rounded bg-transparent">
             <img src="/comment.png" alt="chat" title="Chat" />
           </div>
           <span className="ml-2 text-sm font-medium">Chat</span>

@@ -15,7 +15,7 @@ const Chatbox = ({ user, sidebarOpen, onClose }) => {
   const [showHeaderOptions, setShowHeaderOptions] = useState(false)
 
   return (
-    <div className="h-screen w-full flex flex-col bg-white dark:bg-gray-900">
+    <div className="transition-colors h-screen w-full flex flex-col bg-white dark:bg-gray-900">
       <div className="flex items-center justify-between h-[8%] p-2 border-b-1 border-gray-300 dark:border-gray-700">
         <h1 className="text-xl font-medium tracking-tight">
           {user ? user.name ? user.name : user.title : "Select a chat"}
@@ -140,7 +140,7 @@ const Chatbox = ({ user, sidebarOpen, onClose }) => {
 
       {/* Input area at the bottom */}
       {user && (
-        <div className="fixed bottom-0 left-0 right-0 w-full md:static md:w-auto bg-white dark:bg-gray-900 z-30">
+        <div className="fixed bottom-0 left-0 right-0 w-full md:static md:w-auto z-30">
           <Chat messages={messages} setMessages={setMessages} input={chatboxInput} setInput={setChatboxInput} />
         </div>
       )}
