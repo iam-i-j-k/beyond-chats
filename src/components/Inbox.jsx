@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ChevronDown, ClockFading, CircleChevronLeft, CircleChevronRight, Ticket, CornerUpLeft, ArrowDownNarrowWide, ArrowDownWideNarrow, PanelRightClose, PanelLeftClose } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Chatbox from './Chatbox'
+import { useSwipeable } from 'react-swipeable';
 
 const Users = [
   {
@@ -88,6 +88,14 @@ const Inbox = ({ open, setOpen, selectedUser, setSelectedUser, readChats }) => {
     return sortAsc ? tA - tB : tB - tA
   })
 
+  const handlers = useSwipeable({
+    onSwipedLeft: () => open && setOpen(false),   // Swipe left to close
+    onSwipedRight: () => !open && setOpen(true),  // Swipe right to open
+    delta: 50, // Minimum distance(px) before a swipe is detected
+    trackTouch: true,
+    trackMouse: false,
+  });
+
   return (
     <>
       <AnimatePresence>
@@ -105,6 +113,7 @@ const Inbox = ({ open, setOpen, selectedUser, setSelectedUser, readChats }) => {
               w-full md:w-[22%] max-w-full
               overflow-y-auto
             `}
+            {...handlers}
           >
             <div className='h-[8%] p-2 border-b-1 border-gray-300 dark:border-gray-700 flex items-center justify-between'>
               <h1 className='text-xl font-medium tracking-tight text-gray-900 dark:text-gray-100'>Your inbox</h1>

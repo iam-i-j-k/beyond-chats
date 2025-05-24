@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from 'react'
 import { ArrowUp, CircleChevronLeft, CircleChevronRight, MoveUp, PanelLeftClose, PanelRight, PanelRightClose } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Details from './Details'
+import { useSwipeable } from 'react-swipeable';
 
 // Create a context to communicate with Chatbox (if not already present)
 export const ChatboxInputContext = React.createContext({
@@ -84,6 +85,14 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
       // Optionally clear the prop in parent after use
     }
   }, [inputFromChatbox]);
+
+  const handlers = useSwipeable({
+    onSwipedRight: () => open && setOpen(false),   // Swipe right to close
+    onSwipedLeft: () => !open && setOpen(true),    // Swipe left to open
+    delta: 50,
+    trackTouch: true,
+    trackMouse: false,
+  });
 
   return (
     <>
