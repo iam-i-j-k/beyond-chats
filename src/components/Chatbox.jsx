@@ -16,7 +16,7 @@ const Chatbox = ({ user, sidebarOpen, onClose }) => {
 
   return (
     <div className="transition-colors h-screen w-full flex flex-col bg-white dark:bg-gray-900">
-      <div className="flex items-center justify-between h-[8%] p-2 border-b-1 border-gray-300 dark:border-gray-700">
+      <div className="flex items-center justify-between sm:justify-center h-[8%] p-2 border-b-1 border-gray-300 dark:border-gray-700">
         <h1 className="text-sm sm:text-md md:text-xl font-medium tracking-tight">
           {user ? user.name ? user.name : user.title : "Select a chat"}
         </h1>
