@@ -116,7 +116,9 @@ const Inbox = ({ open, setOpen, selectedUser, setSelectedUser, readChats }) => {
             {...handlers}
           >
             <div className='h-[8%] p-2 border-b-1 border-gray-300 dark:border-gray-700 flex items-center justify-between'>
-              <h1 className='text-xl font-medium tracking-tight text-gray-900 dark:text-gray-100'>Your inbox</h1>
+              <h1 className='text-md sm:text-lg md:text-xl font-medium tracking-tight text-gray-900 dark:text-gray-100'>
+                Your inbox
+              </h1>
               <button
                 className="cursor-pointer p-2 transition ml-2"
                 title="Close Inbox"

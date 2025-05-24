@@ -17,17 +17,17 @@ const Chatbox = ({ user, sidebarOpen, onClose }) => {
   return (
     <div className="transition-colors h-screen w-full flex flex-col bg-white dark:bg-gray-900">
       <div className="flex items-center justify-between h-[8%] p-2 border-b-1 border-gray-300 dark:border-gray-700">
-        <h1 className="text-xl font-medium tracking-tight">
+        <h1 className="text-sm sm:text-md md:text-xl font-medium tracking-tight">
           {user ? user.name ? user.name : user.title : "Select a chat"}
         </h1>
         {user && (
           <div className="flex items-center gap-2 relative">
             <button
-              className="p-2 rounded cursor-pointer transition"
+              className="p-1 sm:p-2 rounded cursor-pointer transition"
               title="Options"
               onClick={() => setShowHeaderOptions((prev) => !prev)}
             >
-              <Ellipsis className="w-4 h-4" />
+              <Ellipsis className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
             {showHeaderOptions && (
               <div className="absolute text-gray-800 right-0 top-10 w-40 bg-white rounded shadow-lg z-50">
@@ -62,18 +62,18 @@ const Chatbox = ({ user, sidebarOpen, onClose }) => {
               </div>
             )}
             <button
-              className="p-2 rounded cursor-pointer transition"
+              className="p-1 sm:p-2 rounded cursor-pointer transition"
               title="Snooze"
             >
-              <BellOff className="w-4 h-4" />
+              <BellOff className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
             <button
-              className="p-2 rounded cursor-pointer flex space-x-2 bg-black text-white transition"
+              className="p-1 sm:p-2 rounded cursor-pointer flex space-x-2 bg-black text-white transition"
               title="Close"
               onClick={onClose}
             >
-              <SquareX className="w-4 h-4" />
-              <span className='text-xs font-medium'>
+              <SquareX className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="text-xs font-medium hidden sm:inline">
                 Close
               </span>
             </button>
