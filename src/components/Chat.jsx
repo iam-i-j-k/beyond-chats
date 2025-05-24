@@ -200,7 +200,7 @@ const Chat = ({ messages, setMessages }) => {
   // You can use a library like draft-js-toolbar-plugin for more advanced toolbars
 
   return (
-    <form className="p-2 md:p-3 bg-white dark:bg-gray-900 shadow-2xl dark:shadow-gray-700 flex flex-col items-start rounded-2xl w-full" onSubmit={handleSend}>
+    <form className="p-2 md:p-3 bg-white dark:bg-gray-900 flex flex-col items-start rounded-2xl w-full" onSubmit={handleSend}>
       <div className="flex flex-col items-start mb-2">
         <div className="flex items-center">
           <div className="flex h-5 w-5 items-center opacity-80 justify-center rounded bg-transparent">
@@ -258,7 +258,7 @@ const Chat = ({ messages, setMessages }) => {
           </div>
         )}
         <div
-          className="w-full rounded border border-gray-300 p-2 outline-none mb-2 min-h-[40px] text-xs bg-white dark:bg-gray-900"
+          className="w-full rounded border border-gray-300 p-2 outline-none mb-2 min-h-[40px] text-xs bg-white dark:bg-gray-900 max-h-[160px] overflow-y-auto"
           style={{ cursor: 'text' }}
           onClick={() => editorRef.current && editorRef.current.focus()}
         >
@@ -284,7 +284,7 @@ const Chat = ({ messages, setMessages }) => {
               handleSend(e);
               return 'handled';
             }}
-            onTab={e => {
+            keyBindingFn={e => {
               // Optionally handle tab for indentation or focus
             }}
             spellCheck={true}
@@ -324,7 +324,7 @@ const Chat = ({ messages, setMessages }) => {
             onClick={() => setShowEmojiPicker((prev) => !prev)}
             title="Emoji"
           >
-            <Smile className="h-5 w-5 text-gray-900 dark:text-gray-100" />
+            <Smile className="h-4 w-4 text-gray-900 dark:text-gray-100" />
           </button>
         </div>
 
@@ -347,7 +347,7 @@ const Chat = ({ messages, setMessages }) => {
             <ChevronDown className="text-gray-300 dark:text-gray-200 w-4 h-4" />
           </button>
           {showOptions && (
-            <div className="absolute right-0 bottom-10 w-40 bg-white rounded shadow-lg z-50">
+            <div className="absolute right-0 bottom-10 w-40 bg-white text-gray-800 rounded shadow-lg z-50">
               <input
                 className="block w-full text-xs text-left px-4 py-2 hover:bg-gray-100"
                 type="file"

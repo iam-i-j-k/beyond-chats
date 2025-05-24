@@ -3,6 +3,7 @@ import Inbox from './components/Inbox'
 import Chatbox from './components/Chatbox'
 import FinAI, { ChatboxInputContext } from './components/FinAI'
 import ThemeToggle from './components/ThemeToggle'
+import { motion } from "framer-motion";
 
 const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true)
@@ -21,7 +22,7 @@ const App = () => {
 
   return (
     <ChatboxInputContext.Provider value={{ chatboxInput, setChatboxInput }}>
-      <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+      <div className="relative bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
         <div className="flex flex-col md:flex-row w-full h-screen bg-gray-50 dark:bg-gray-800">
           <Inbox
             open={sidebarOpen}
@@ -37,7 +38,7 @@ const App = () => {
                   ? 'md:ml-[22%] md:w-[60%] ml-0 w-full'
                   : 'md:ml-[22%] md:w-[78%] ml-0 w-full'
                 : finAiOpen
-                  ? 'md:ml-[4%] md:w-[81%] ml-0 w-full'   // <-- 4% for collapsed sidebar
+                  ? 'md:ml-[4%] md:w-[81%] ml-0 w-full'
                   : 'md:ml-[4%] md:w-[96%] ml-0 w-full'
             }`}
           >
@@ -46,14 +47,22 @@ const App = () => {
               sidebarOpen={sidebarOpen}
               onClose={() => setSelectedUser(null)}
             />
-
           </div>
           <div className={finAiOpen ? 'md:w-[33%] w-full' : 'md:w-[4%] w-12'}>
             <FinAI open={finAiOpen} setOpen={setFinAiOpen} />
           </div>
-          <div className='absolute top-2 left-40 z-50'>
+          <motion.div
+            animate={{
+              top: finAiOpen ? 8 : 64, // px values for top-2 and top-16
+              right: finAiOpen ? 64 : 8, // px values for right-16 and right-2
+              position: "fixed",
+              zIndex: 50,
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            style={{ position: "fixed" }}
+          >
             <ThemeToggle />
-          </div>
+          </motion.div>
         </div>
       </div>
     </ChatboxInputContext.Provider>

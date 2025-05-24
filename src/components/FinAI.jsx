@@ -175,7 +175,7 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.25 }}
-              className="flex-1 p-2 overflow-y-auto bg-gradient-to-t from-indigo-100 to-white dark:from-gray-900 dark:to-gray-800 scrollbar-thin scrollbar-thumb-indigo-300 dark:scrollbar-thumb-gray-700 scrollbar-track-transparent"
+              className="flex-1 p-2 md:p-4 overflow-y-auto bg-gradient-to-t from-indigo-100 to-white dark:from-gray-900 dark:to-gray-800 scrollbar-thin scrollbar-thumb-indigo-300 dark:scrollbar-thumb-gray-700 scrollbar-track-transparent"
             >
               {selectedTab === 'copilot' && (
                 <div className="flex flex-col h-full w-full">

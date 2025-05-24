@@ -102,8 +102,8 @@ const Inbox = ({ open, setOpen, selectedUser, setSelectedUser, readChats }) => {
             className={`fixed left-0 top-0 z-40 h-screen flex flex-col
               bg-white dark:bg-gray-800
               transition-all duration-300
-              ${open ? 'w-full md:w-[22%]' : 'w-12 md:w-[4%]'}
-              max-w-full
+              w-full md:w-[22%] max-w-full
+              overflow-y-auto
             `}
           >
             <div className='h-[8%] p-2 border-b-1 border-gray-300 dark:border-gray-700 flex items-center justify-between'>
@@ -157,7 +157,7 @@ const Inbox = ({ open, setOpen, selectedUser, setSelectedUser, readChats }) => {
                       transition={{ duration: 0.5 }}
                       className={`flex cursor-pointer items-start justify-between w-full p-3 rounded
                         hover:bg-gray-300 dark:hover:bg-gray-700
-                        ${selectedUser && selectedUser.id === user.id ? 'bg-blue-100 dark:bg-blue-900' : ''}
+                        ${selectedUser && selectedUser.id === user.id ? 'bg-blue-100 dark:bg-gray-700' : ''}
                       `}
                       onClick={() => setSelectedUser(user)}
                     >

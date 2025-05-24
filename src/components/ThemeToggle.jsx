@@ -17,9 +17,10 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="p-2 text-sm rounded cursor-pointer bg-gray-200 dark:bg-gray-700"
+      className="p-2 text-sm rounded cursor-pointer bg-gray-700 "
+    title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
     >
-      {theme === 'dark' ? '🌞 Light' : '🌙 Dark'}
+      {theme === 'dark' ? '🌞' : '🌙'}
     </button>
   );
 };
