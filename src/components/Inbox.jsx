@@ -99,10 +99,15 @@ const Inbox = ({ open, setOpen, selectedUser, setSelectedUser, readChats }) => {
             exit="exit"
             variants={sidebarVariants}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="flex flex-col h-screen bg-white fixed left-0 top-0 z-40 w-[22%] max-w-full"
+            className={`fixed left-0 top-0 z-40 h-screen flex flex-col
+              bg-white dark:bg-gray-800
+              transition-all duration-300
+              ${open ? 'w-full md:w-[22%]' : 'w-12 md:w-[4%]'}
+              max-w-full
+            `}
           >
-            <div className='h-[8%] p-2 border-b-1 border-gray-300'>
-              <h1 className='text-2xl font-medium tracking-tight'>Your inbox</h1>
+            <div className='h-[8%] p-2 border-b-1 border-gray-300 dark:border-gray-700'>
+              <h1 className='text-2xl font-medium tracking-tight text-gray-900 dark:text-gray-100'>Your inbox</h1>
             </div>
             <div className='flex items-center justify-between px-2'>
               <div>
@@ -144,8 +149,8 @@ const Inbox = ({ open, setOpen, selectedUser, setSelectedUser, readChats }) => {
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.5 }}
                       className={`flex cursor-pointer items-start justify-between w-full p-3 rounded
-                        hover:bg-gray-300
-                        ${selectedUser && selectedUser.id === user.id ? 'bg-blue-100' : ''}
+                        hover:bg-gray-300 dark:hover:bg-gray-700
+                        ${selectedUser && selectedUser.id === user.id ? 'bg-blue-100 dark:bg-blue-900' : ''}
                       `}
                       onClick={() => setSelectedUser(user)}
                     >
@@ -157,22 +162,16 @@ const Inbox = ({ open, setOpen, selectedUser, setSelectedUser, readChats }) => {
                         </div>
                         <div>
                           <div className="flex flex-col items-start">
-                            <span
-                              className={`text-sm ${
-                                user.notification && !readChats.includes(user.id)
-                                  ? 'font-bold'
-                                  : 'font-medium'
-                              }`}
-                            >
+                            <span className={`text-sm ${user.notification && !readChats.includes(user.id) ? 'font-bold' : 'font-medium'} text-gray-900 dark:text-gray-100`}>
                               {user.title}
                             </span>
                             {user.subtitle && (
-                              <span className="text-xs text-gray-600 py-0.5 rounded">
+                              <span className="text-xs text-gray-600 dark:text-gray-300 py-0.5 rounded">
                                 {user.subtitle}
                               </span>
                             )}
                           </div>
-                          <p className="mt-1 text-xs text-gray-600 truncate">{user.description}</p>
+                          <p className="mt-1 text-xs text-gray-600 dark:text-gray-300 truncate">{user.description}</p>
                         </div>
                       </div>
                       <div className="flex flex-col items-end min-w-[60px]">
@@ -189,26 +188,26 @@ const Inbox = ({ open, setOpen, selectedUser, setSelectedUser, readChats }) => {
               </div>
             </div>
             {/* Floating close button */}
-            <div className="fixed bottom-6 left-6 z-50">
+            <div className="fixed bottom-6 left-2 z-50">
               <button
                 className="bg-white cursor-pointer shadow-lg rounded-full p-3 hover:bg-gray-200 transition"
                 title="Close Inbox"
                 onClick={() => setOpen(false)}
               >
-                <PanelLeftClose className="w-7 h-7" />
+                <PanelLeftClose className="w-5 h-5" />
               </button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
       {!open && (
-        <div className="fixed bottom-6 left-6 z-50">
+        <div className="fixed bottom-6 left-2 z-50">
           <button
             className="bg-white cursor-pointer shadow-lg rounded-full p-3 hover:bg-gray-200 transition"
             title="Open Inbox"
             onClick={() => setOpen(true)}
           >
-            <PanelRightClose className="w-7 h-7" />
+            <PanelRightClose className="w-5 h-5" />
           </button>
         </div>
       )}

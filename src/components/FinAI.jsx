@@ -108,9 +108,9 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
             animate="visible"
             exit="exit"
             variants={sidebarVariants}
-            className='fixed right-0 top-0 h-screen w-[28%] min-w-[260px] bg-gray-100 z-40 flex flex-col'
+            className="fixed right-0 top-0 h-screen w-full md:w-[28%] min-w-[260px] bg-gray-100 dark:bg-gray-900 z-40 flex flex-col"
           >
-            <div className='relative flex w-full border-b-1 border-gray-300 space-x-5 h-[8%] p-2 items-center justify-start'>
+            <div className="relative flex w-full border-b-1 border-gray-300 dark:border-gray-700 space-x-5 h-[8%] p-2 items-center justify-start">
               <div
                 className="flex flex-col items-center cursor-pointer"
                 onClick={() => setSelectedTab('copilot')}
@@ -149,19 +149,19 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
                     title="Close AI Copilot"
                     onClick={() => setOpen(false)}
                 >
-                    <PanelRightClose className="w-5 h-5" />
+                    <PanelRightClose className="w-3 h-3" />
                 </button>
                 </div>
 
               {/* Close button */}
                 {!open && (
-                <div className="fixed bottom-6 right-6 z-50">
+                <div className="fixed bottom-6 right-2 z-50">
                     <button
                     className="bg-white cursor-pointer shadow-lg rounded-full p-3 hover:bg-gray-200 transition"
                     title="Open AI Copilot"
                     onClick={() => setOpen(true)}
                     >
-                    <PanelLeftClose className="w-7 h-7" />
+                    <PanelLeftClose className="w-3 h-3" />
                     </button>
                 </div>
                 )}
@@ -174,7 +174,7 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.25 }}
-              className="flex-1 p-4 overflow-y-auto bg-gradient-to-t from-indigo-100 to-white"
+              className="flex-1 p-4 overflow-y-auto bg-gradient-to-t from-indigo-100 to-white dark:from-gray-900 dark:to-gray-800"
             >
               {selectedTab === 'copilot' && (
                 <div className="flex flex-col h-full">
@@ -195,7 +195,11 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
                             key={idx}
                             className={`mb-2 w-full flex ${msg.fromUser ? 'justify-end' : 'justify-start'}`}
                           >
-                            <div className={`px-4 py-2 text-xs rounded-lg max-w-[80%] ${msg.fromUser ? 'bg-blue-300 text-black' : 'bg-gray-200 text-black'}`}>
+                            <div className={`px-4 py-2 text-xs rounded-lg max-w-[80%] ${
+                              msg.fromUser
+                                ? 'bg-blue-300 dark:bg-blue-700 text-black dark:text-white'
+                                : 'bg-gray-200 dark:bg-gray-700 text-black dark:text-white'
+                            }`}>
                               <div className="flex flex-col gap-2">
                                 <span>{msg.text}</span>
                                 {/* Show "Add to composer" button for AI responses only */}

@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import Inbox from './components/Inbox'
 import Chatbox from './components/Chatbox'
 import FinAI, { ChatboxInputContext } from './components/FinAI'
+import ThemeToggle from './components/ThemeToggle'
 
 const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [selectedUser, setSelectedUser] = useState(null)
   const [readChats, setReadChats] = useState([])
-  const [finAiOpen, setFinAiOpen] = useState(true) // Track FinAI sidebar open/close
+  const [finAiOpen, setFinAiOpen] = useState(true)
   const [chatboxInput, setChatboxInput] = useState('')
 
   // When a user is selected, mark as read
@@ -20,8 +21,8 @@ const App = () => {
 
   return (
     <ChatboxInputContext.Provider value={{ chatboxInput, setChatboxInput }}>
-      <div className=''>
-        <div className="flex w-full h-screen">
+      <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+        <div className="flex flex-col md:flex-row w-full h-screen bg-gray-50 dark:bg-gray-800">
           <Inbox
             open={sidebarOpen}
             setOpen={setSidebarOpen}
@@ -33,11 +34,11 @@ const App = () => {
             className={`transition-all duration-300 ${
               sidebarOpen
                 ? finAiOpen
-                  ? 'ml-[22%] w-[60%]' // Inbox 22% + Chatbox 43% + FinAI 35% = 100%
-                  : 'ml-[22%] w-[78%]' // Inbox 22% + Chatbox 78% (FinAI closed)
+                  ? 'md:ml-[22%] md:w-[60%] ml-0 w-full'
+                  : 'md:ml-[22%] md:w-[78%] ml-0 w-full'
                 : finAiOpen
-                  ? 'ml-0 w-[85%]'    // No Inbox, Chatbox 65%, FinAI 35%
-                  : 'ml-0 w-full'     // No Inbox, Chatbox 100% (FinAI closed)
+                  ? 'md:ml-[4%] md:w-[81%] ml-0 w-full'   // <-- 4% for collapsed sidebar
+                  : 'md:ml-[4%] md:w-[96%] ml-0 w-full'
             }`}
           >
             <Chatbox
@@ -45,9 +46,13 @@ const App = () => {
               sidebarOpen={sidebarOpen}
               onClose={() => setSelectedUser(null)}
             />
+
           </div>
-          <div className={finAiOpen ? 'w-[33%]' : 'w-0'}>
+          <div className={finAiOpen ? 'md:w-[33%] w-full' : 'md:w-[4%] w-12'}>
             <FinAI open={finAiOpen} setOpen={setFinAiOpen} />
+          </div>
+          <div className='absolute top-2 left-40 z-50'>
+            <ThemeToggle />
           </div>
         </div>
       </div>

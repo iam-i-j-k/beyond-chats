@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 body{
     font-family: poppins;
@@ -28,3 +29,5 @@ body{
 .public-DraftStyleDefault-italic {
   font-style: italic !important;
 }
+
+

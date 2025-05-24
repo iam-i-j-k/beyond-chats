@@ -16,7 +16,7 @@ const Chatbox = ({ user, sidebarOpen, onClose }) => {
   const [selectedMsgIdx, setSelectedMsgIdx] = useState(null);
 
   return (
-    <div className="h-screen relative w-full transition-all duration-300 flex flex-col">
+    <div className="h-screen relative w-full transition-all duration-300 flex flex-col bg-white dark:bg-gray-900">
       <div className="flex items-center justify-between h-[8%] p-2 border-b-1 border-gray-300">
         <h1 className="text-2xl font-medium tracking-tight">
           {user ? user.name ? user.name : user.title : "Select a chat"}
@@ -83,10 +83,10 @@ const Chatbox = ({ user, sidebarOpen, onClose }) => {
       </div>
       {/* Chat messages */}
       {user && (
-        <div className="flex-1 overflow-y-auto max-h-[calc(100%-40%)] p-4">
+        <div className="flex-1 overflow-y-auto max-h-[calc(100%-40%)] p-2 md:p-4">
           <div className="max-w-[80%]">
-            <div className="rounded-lg bg-gray-100 p-3">
-              <p className="text-xs text-gray-800">
+            <div className="rounded-lg bg-gray-100 dark:bg-gray-800 p-3">
+              <p className="text-xs text-gray-800 dark:text-gray-100">
                 I bought a product from your store in November as a Christmas gift for a member of my family. However,
                 it turns out they have something very similar already. I was hoping you'd be able to refund me, as it
                 is un-opened.
@@ -101,7 +101,11 @@ const Chatbox = ({ user, sidebarOpen, onClose }) => {
               key={idx}
               className={`mb-2 flex ${msg.fromUser ? 'justify-end' : 'justify-start'}`}
             >
-              <div className={`px-4 py-2 text-xs rounded-lg ${msg.fromUser ? 'bg-blue-300 text-black' : 'bg-gray-200 text-black'}`}>
+              <div className={`px-4 py-2 text-xs rounded-lg max-w-[80%] ${
+                msg.fromUser
+                  ? 'bg-blue-300 dark:bg-blue-700 text-black dark:text-white'
+                  : 'bg-gray-200 dark:bg-gray-700 text-black dark:text-white'
+              }`}>
                 {msg.file ? (
                   <div>
                     <a
@@ -137,7 +141,7 @@ const Chatbox = ({ user, sidebarOpen, onClose }) => {
 
       {/* Input area at the bottom */}
       {user && (
-        <div className="fixed left-0 right-[6%] bottom-[2%] w-full mx-auto max-w-2xl z-100">
+        <div className="fixed left-0 right-0 md:right-[6%] bottom-0 md:bottom-[2%] w-full mx-auto max-w-full md:max-w-2xl z-30">
           <Chat messages={messages} setMessages={setMessages} input={chatboxInput} setInput={setChatboxInput} />
         </div>
       )}

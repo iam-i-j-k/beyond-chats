@@ -200,7 +200,7 @@ const Chat = ({ messages, setMessages }) => {
   // You can use a library like draft-js-toolbar-plugin for more advanced toolbars
 
   return (
-    <form onSubmit={handleSend} className="p-3 bg-white shadow-2xl shadow-black flex flex-col items-start rounded-2xl w-full">
+    <form className="p-2 md:p-3 bg-white dark:bg-gray-900 shadow-2xl shadow-black flex flex-col items-start rounded-2xl w-full" onSubmit={handleSend}>
       <div className="flex flex-col items-start mb-2">
         <div className="flex items-center">
           <div className="flex h-5 w-5 items-center justify-center rounded bg-transparent">
@@ -214,7 +214,7 @@ const Chat = ({ messages, setMessages }) => {
 
       <div className="relative w-full">
         {showToolbar && (
-          <div className="absolute left-2 -top-8 z-10 flex gap-1 bg-white border rounded shadow p-1">
+          <div className="absolute left-2 -top-8 z-10 flex gap-1 bg-white dark:bg-gray-800 border rounded shadow p-1">
             {FORMAT_OPTIONS.map(opt => (
               <div key={opt.action} style={{ position: 'relative' }}>
                 <button
@@ -258,7 +258,7 @@ const Chat = ({ messages, setMessages }) => {
           </div>
         )}
         <div
-          className="w-full rounded border border-gray-300 p-2 outline-none mb-2 min-h-[40px] text-xs bg-white"
+          className="w-full rounded border border-gray-300 p-2 outline-none mb-2 min-h-[40px] text-xs bg-white dark:bg-gray-900"
           style={{ cursor: 'text' }}
           onClick={() => editorRef.current && editorRef.current.focus()}
         >
