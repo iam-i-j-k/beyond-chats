@@ -73,7 +73,7 @@ const Chatbox = ({ user, sidebarOpen, onClose }) => {
               onClick={onClose}
             >
               <SquareX className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="text-xs font-medium hidden sm:inline">
+              <span className="text-xs font-medium">
                 Close
               </span>
             </button>
