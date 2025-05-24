@@ -106,8 +106,15 @@ const Inbox = ({ open, setOpen, selectedUser, setSelectedUser, readChats }) => {
               max-w-full
             `}
           >
-            <div className='h-[8%] p-2 border-b-1 border-gray-300 dark:border-gray-700'>
-              <h1 className='text-2xl font-medium tracking-tight text-gray-900 dark:text-gray-100'>Your inbox</h1>
+            <div className='h-[8%] p-2 border-b-1 border-gray-300 dark:border-gray-700 flex items-center justify-between'>
+              <h1 className='text-xl font-medium tracking-tight text-gray-900 dark:text-gray-100'>Your inbox</h1>
+              <button
+                className="cursor-pointer p-2 transition ml-2"
+                title="Close Inbox"
+                onClick={() => setOpen(false)}
+              >
+                <PanelLeftClose className="w-5 h-5" />
+              </button>
             </div>
             <div className='flex items-center justify-between px-2'>
               <div>
@@ -156,13 +163,13 @@ const Inbox = ({ open, setOpen, selectedUser, setSelectedUser, readChats }) => {
                     >
                       <div className="flex items-start">
                         <div
-                          className={`mr-3 text-lg flex h-10 w-10 items-center justify-center rounded-full ${user.bg ? user.bg : "bg-blue-500"} text-white`}
+                          className={`mr-3 text-sm flex h-8 w-8 items-center justify-center rounded-full ${user.bg ? user.bg : "bg-blue-500"} text-white`}
                         >
                           {user.photo ? user.photo : <span>{user.logo}</span>}
                         </div>
                         <div>
                           <div className="flex flex-col items-start">
-                            <span className={`text-sm ${user.notification && !readChats.includes(user.id) ? 'font-bold' : 'font-medium'} text-gray-900 dark:text-gray-100`}>
+                            <span className={`text-xs ${user.notification && !readChats.includes(user.id) ? 'font-bold' : 'font-medium'} text-gray-900 dark:text-gray-100`}>
                               {user.title}
                             </span>
                             {user.subtitle && (
@@ -171,11 +178,11 @@ const Inbox = ({ open, setOpen, selectedUser, setSelectedUser, readChats }) => {
                               </span>
                             )}
                           </div>
-                          <p className="mt-1 text-xs text-gray-600 dark:text-gray-300 truncate">{user.description}</p>
+                          <p className="mt-1 text-[11px] text-gray-600 dark:text-gray-300 truncate">{user.description}</p>
                         </div>
                       </div>
                       <div className="flex flex-col items-end min-w-[60px]">
-                        <span className="text-sm text-gray-500">{user.time}</span>
+                        <span className="text-xs text-gray-500">{user.time}</span>
                         {user.notification && (
                           <span className="flex text-[10px] text-black bg-yellow-300 px-2 py-0.5 rounded-full">
                             <ClockFading className='w-3 h-3'/>{user.notification}
@@ -187,23 +194,13 @@ const Inbox = ({ open, setOpen, selectedUser, setSelectedUser, readChats }) => {
                 </AnimatePresence>
               </div>
             </div>
-            {/* Floating close button */}
-            <div className="fixed bottom-6 left-2 z-50">
-              <button
-                className="bg-white cursor-pointer shadow-lg rounded-full p-3 hover:bg-gray-200 transition"
-                title="Close Inbox"
-                onClick={() => setOpen(false)}
-              >
-                <PanelLeftClose className="w-5 h-5" />
-              </button>
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
       {!open && (
-        <div className="fixed bottom-6 left-2 z-50">
+        <div className="fixed top-2 left-2 z-50">
           <button
-            className="bg-white cursor-pointer shadow-lg rounded-full p-3 hover:bg-gray-200 transition"
+            className="cursor-pointer p-3 transition"
             title="Open Inbox"
             onClick={() => setOpen(true)}
           >

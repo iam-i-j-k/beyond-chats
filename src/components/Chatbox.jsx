@@ -18,13 +18,13 @@ const Chatbox = ({ user, sidebarOpen, onClose }) => {
   return (
     <div className="h-screen relative w-full transition-all duration-300 flex flex-col bg-white dark:bg-gray-900">
       <div className="flex items-center justify-between h-[8%] p-2 border-b-1 border-gray-300">
-        <h1 className="text-2xl font-medium tracking-tight">
+        <h1 className="text-xl font-medium tracking-tight">
           {user ? user.name ? user.name : user.title : "Select a chat"}
         </h1>
         {user && (
           <div className="flex items-center gap-2 relative">
             <button
-              className="p-2 rounded cursor-pointer bg-gray-200 transition"
+              className="p-2 rounded cursor-pointer transition"
               title="Options"
               onClick={() => setShowHeaderOptions((prev) => !prev)}
             >
@@ -33,7 +33,7 @@ const Chatbox = ({ user, sidebarOpen, onClose }) => {
             {showHeaderOptions && (
               <div className="absolute right-0 top-10 w-40 bg-white rounded shadow-lg z-50">
                 <button
-                  className="flex items-center w-full text-xs text-left px-4 py-2 hover:bg-gray-100"
+                  className="flex items-center w-full text-xs text-left px-4 py-2"
                   type="button"
                   onClick={() => setShowHeaderOptions(false)}
                 >
@@ -63,7 +63,7 @@ const Chatbox = ({ user, sidebarOpen, onClose }) => {
               </div>
             )}
             <button
-              className="p-2 rounded cursor-pointer bg-gray-200 transition"
+              className="p-2 rounded cursor-pointer transition"
               title="Snooze"
             >
               <BellOff className="w-4 h-4" />

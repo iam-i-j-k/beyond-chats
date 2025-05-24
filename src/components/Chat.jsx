@@ -97,9 +97,9 @@ const Chat = ({ messages, setMessages }) => {
 
   // Handle Enter to send, Shift+Enter for newline
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault()
-      handleSend(e)
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleSend(e);
     }
   }
 
@@ -200,16 +200,16 @@ const Chat = ({ messages, setMessages }) => {
   // You can use a library like draft-js-toolbar-plugin for more advanced toolbars
 
   return (
-    <form className="p-2 md:p-3 bg-white dark:bg-gray-900 shadow-2xl shadow-black flex flex-col items-start rounded-2xl w-full" onSubmit={handleSend}>
+    <form className="p-2 md:p-3 bg-white dark:bg-gray-900 shadow-2xl dark:shadow-gray-700 flex flex-col items-start rounded-2xl w-full" onSubmit={handleSend}>
       <div className="flex flex-col items-start mb-2">
         <div className="flex items-center">
-          <div className="flex h-5 w-5 items-center justify-center rounded bg-transparent">
+          <div className="flex h-5 w-5 items-center opacity-80 justify-center rounded bg-transparent">
             <img src="/comment.png" alt="chat" title="Chat" />
           </div>
-          <span className="ml-2 font-medium">Chat</span>
+          <span className="ml-2 text-sm font-medium">Chat</span>
           <ChevronDown className="ml-1 h-4 w-4" />
         </div>
-        <span className='text-xs text-gray-400'>Use ⌘ K for shortcuts</span>
+        <span className='text-[10px] text-gray-400'>Use ⌘ K for shortcuts</span>
       </div>
 
       <div className="relative w-full">
@@ -230,7 +230,7 @@ const Chat = ({ messages, setMessages }) => {
                 </button>
                 {opt.action === 'AI' && showAIOptions && (
                   <div className="absolute left-0 bottom-full mb-1 bg-white border rounded shadow z-50 flex flex-col min-w-[140px]">
-                    {["Summarize this", "Make it more formal", "", "Correct grammar"].map((option, idx) => (
+                    {["Summarize this", "Make it more formal", "", "Make it in my tone", "Correct grammar"].map((option, idx) => (
                       <button
                         key={option}
                         className="text-left px-3 py-1 hover:bg-indigo-100 text-xs"
@@ -275,13 +275,21 @@ const Chat = ({ messages, setMessages }) => {
               }
               return 'not-handled'
             }}
+            handleReturn={(e) => {
+              if (e.shiftKey) {
+                // Allow new line with Shift+Enter
+                return 'not-handled';
+              }
+              // Send message on Enter
+              handleSend(e);
+              return 'handled';
+            }}
             onTab={e => {
               // Optionally handle tab for indentation or focus
             }}
             spellCheck={true}
             onFocus={() => setShowToolbar(false)}
             onBlur={() => setShowToolbar(false)}
-            onKeyDown={handleKeyDown}
           />
         </div>
         {/* Emoji Picker */}
@@ -295,37 +303,37 @@ const Chat = ({ messages, setMessages }) => {
       <div className="flex items-center justify-between space-y-2 w-full">
         <div className="flex items-center space-x-2">
           <button
-            className="p-1 px-2 cursor-pointer text-gray-500 border-r hover:bg-gray-100"
+            className="p-1 px-2 cursor-pointer border-r hover:bg-gray-100 dark:hover:bg-gray-800"
             type="button"
             title="Quick reply"
             onClick={handleZap}
           >
-            <Zap className="h-5 w-5 text-gray-900 fill-gray-900" />
+            <Zap className="h-4 w-4 text-gray-900 dark:text-gray-100" />
           </button>
           <button
-            className="rounded p-1 text-gray-500 cursor-pointer hover:bg-gray-100"
+            className="rounded p-1 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
             type="button"
             title="Bookmark this draft"
             onClick={handleBookmark}
           >
-            <Bookmark className="h-5 w-5 text-gray-900 fill-gray-900" />
+            <Bookmark className="h-4 w-4 text-gray-900 dark:text-gray-100" />
           </button>
           <button
-            className="rounded p-1 cursor-pointer text-gray-500 hover:bg-gray-100"
+            className="rounded p-1 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
             type="button"
             onClick={() => setShowEmojiPicker((prev) => !prev)}
             title="Emoji"
           >
-            <Smile className="h-6 w-6 text-white fill-gray-900" />
+            <Smile className="h-5 w-5 text-gray-900 dark:text-gray-100" />
           </button>
         </div>
 
         <div 
           disabled={!editorState.getCurrentContent().hasText()}
-          className={`relative flex justify-between rounded-md items-center p-1 px-2 ${editorState.getCurrentContent().hasText() ? "bg-black" : "bg-white"}`}>
+          className={`relative flex justify-between rounded-md items-center p-1 px-2 ${editorState.getCurrentContent().hasText() ? "bg-black" : "bg-white dark:bg-gray-900"}`}>
           <button
             type="submit"
-            className="text-xs font-base text-gray-300 border-r-1 pr-2 border-gray-500 cursor-pointer transition"
+            className="text-xs font-base text-gray-300 dark:text-gray-200 border-r-1 pr-2 border-gray-500 cursor-pointer transition"
             disabled={!editorState.getCurrentContent().hasText()}
           >
             Send
@@ -336,7 +344,7 @@ const Chat = ({ messages, setMessages }) => {
             onClick={() => setShowOptions((prev) => !prev)}
             title="More options"
           >
-            <ChevronDown className="text-gray-300 w-4 h-4" />
+            <ChevronDown className="text-gray-300 dark:text-gray-200 w-4 h-4" />
           </button>
           {showOptions && (
             <div className="absolute right-0 bottom-10 w-40 bg-white rounded shadow-lg z-50">
@@ -385,7 +393,7 @@ const Chat = ({ messages, setMessages }) => {
           <div className="text-xs text-gray-500 mb-1">Bookmarked drafts:</div>
           <ul className="space-y-1">
             {bookmarkedMessages.map((msg, idx) => (
-              <li key={idx} className="flex items-center justify-between bg-gray-100 rounded px-2 py-1">
+              <li key={idx} className="flex items-center justify-between bg-gray-100 dark:bg-transparent rounded px-2 py-1">
                 <span
                   className="truncate cursor-pointer hover:underline"
                   title="Click to restore"

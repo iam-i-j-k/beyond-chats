@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useContext } from 'react'
 import { ArrowUp, CircleChevronLeft, CircleChevronRight, MoveUp, PanelLeftClose, PanelRight, PanelRightClose } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
+import Details from './Details'
 
 // Create a context to communicate with Chatbox (if not already present)
 export const ChatboxInputContext = React.createContext({
@@ -88,9 +89,9 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
     <>
       {/* Floating button at bottom-right */}
     {!open && (
-      <div className="fixed bottom-6 right-1 z-50">
+      <div className="fixed top-2 right-1 z-50">
         <button
-          className="bg-white cursor-pointer shadow-lg rounded-full p-3 hover:bg-gray-200 transition"
+          className="cursor-pointer rounded-full p-3 transition"
           title={open ? "Close AI Copilot" : "Open AI Copilot"}
           onClick={() => setOpen(!open)}
         >
@@ -145,7 +146,7 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
               ></span>
               <div className="absolute right-2 top-2">
                 <button
-                    className="bg-white cursor-pointer shadow-md rounded-full p-2 hover:bg-gray-200 transition"
+                    className="cursor-pointer p-2 transition"
                     title="Close AI Copilot"
                     onClick={() => setOpen(false)}
                 >
@@ -155,9 +156,9 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
 
               {/* Close button */}
                 {!open && (
-                <div className="fixed bottom-6 right-2 z-50">
+                <div className="fixed bottom-6 right-2 z-50 p-2">
                     <button
-                    className="bg-white cursor-pointer shadow-lg rounded-full p-3 hover:bg-gray-200 transition"
+                    className="bg-white cursor-pointer shadow-lg rounded-full hover:bg-gray-200 transition"
                     title="Open AI Copilot"
                     onClick={() => setOpen(true)}
                     >
@@ -174,15 +175,15 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.25 }}
-              className="flex-1 p-4 overflow-y-auto bg-gradient-to-t from-indigo-100 to-white dark:from-gray-900 dark:to-gray-800"
+              className="flex-1 p-2 overflow-y-auto bg-gradient-to-t from-indigo-100 to-white dark:from-gray-900 dark:to-gray-800 scrollbar-thin scrollbar-thumb-indigo-300 dark:scrollbar-thumb-gray-700 scrollbar-track-transparent"
             >
               {selectedTab === 'copilot' && (
-                <div className="flex flex-col h-full">
+                <div className="flex flex-col h-full w-full">
                   <div className={`flex-1 overflow-y-auto mb-2 flex flex-col ${
-  messages.length === 0 && !loading
-    ? "items-center justify-center"
-    : "items-stretch justify-start"
-}`}>
+                    messages.length === 0 && !loading
+                      ? "items-center justify-center"
+                      : "items-stretch justify-start"
+                  }`}>
                     {messages.length === 0 && !loading ? (
                       <div className="flex flex-col items-center justify-center h-full">
                         <h2 className="text-xl font-bold text-gray-700 mb-2 text-center">Hey, I'm FinAI Copilot</h2>
@@ -205,14 +206,14 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
                                 {/* Show "Add to composer" button for AI responses only */}
                                 {!msg.fromUser && idx === messages.length - 1 && (
                                   <button
-                                    className="mt-2 px-2 py-1 text-xs bg-indigo-200 hover:bg-indigo-300 rounded transition"
+                                    className="mt-2 cursor-pointer px-2 py-1 text-xs bg-indigo-200 hover:bg-indigo-300 dark:bg-indigo-400 rounded transition"
                                     onClick={() => setChatboxInput(msg.text)}
                                   >
                                     Add to composer
                                   </button>
                                 )}
                               </div>
-                              <div className="flex items-center gap-2 mt-1 text-[10px] text-gray-500">
+                              <div className="flex items-center gap-2 mt-1 text-[10px] text-gray-500 dark:text-gray-300">
                                 <span>{msg.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                               </div>
                             </div>
@@ -222,7 +223,7 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
                     )}
                     {loading && (
                       <div className="mb-2 flex justify-start">
-                        <div className="px-4 py-2 text-sm rounded-lg bg-gray-200 text-gray-400 max-w-[80%]">
+                        <div className="px-4 py-2 text-sm rounded-lg bg-gray-200 text-gray-400 dark:text-gray-600 max-w-[80%]">
                           Fin AI is typing...
                         </div>
                       </div>
@@ -238,13 +239,13 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
                         className="flex items-center w-fit p-2 hover:text-indigo-500 transition-all hover:cursor-pointer hover:bg-gradient-to-tr from-indigo-300 to-white bg-white justify-between mb-2 rounded-xl"
                       >
                         <button
-                          className='cursor-pointer text-xs font-medium'
+                          className='cursor-pointer dark:text-gray-700 dark:hover:text-indigo-500 text-xs font-medium'
                           type="button"
                           onClick={handleSuggestedClick}
                           disabled={loading}
                         >
                           Suggested 💸 
-                          <span>How do i get a refund?</span>
+                          <span className='dark:hover:text-indigo-500 dark:text-gray-700'>How do i get a refund?</span>
                         </button>
                       </motion.div>
                     )}
@@ -252,7 +253,7 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
                   <form onSubmit={sendMessage} className="flex rounded-xl bg-white items-center gap-2 mt-auto">
                     <input
                       type="text"
-                      className="flex-1 rounded text-sm px-2 outline-none"
+                      className="flex-1 rounded text-sm dark:text-gray-900 px-2 outline-none"
                       placeholder="Ask a question..."
                       value={input}
                       onChange={e => setInput(e.target.value)}
@@ -262,7 +263,7 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
                       className={`cursor-pointer transition rounded-xl m-2
                         ${input.trim() 
                         ? "bg-black text-gray-300 p-2 rounded-xl" 
-                        : "text-gray-500 p-2 "}`}
+                        : "text-gray-500 p-2"}`}
                       disabled={!input.trim()}
                     >
                       <ArrowUp className='w-4 h-4' />
@@ -272,7 +273,7 @@ const FinAI = ({ open = true, setOpen, inputFromChatbox }) => {
               )}
               {selectedTab === 'details' && (
                 <div>
-                  <p className="text-gray-500">Details content...</p>
+                  <Details />
                 </div>
               )}
             </motion.div>
