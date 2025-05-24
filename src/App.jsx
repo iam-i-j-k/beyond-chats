@@ -30,6 +30,7 @@ const App = () => {
             selectedUser={selectedUser}
             setSelectedUser={handleSelectUser}
             readChats={readChats}
+            finAiOpen={finAiOpen} // <-- add this line
           />
           <div
             className={`transition-all duration-300 ${
