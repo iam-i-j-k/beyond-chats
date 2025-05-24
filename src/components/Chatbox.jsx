@@ -21,7 +21,7 @@ const Chatbox = ({ user, sidebarOpen, onClose }) => {
           {user ? user.name ? user.name : user.title : "Select a chat"}
         </h1>
         {user && (
-          <div className="flex items-center gap-2 mt-2 sm:mt-0 self-center sm:self-auto">
+          <div className="flex relative items-center gap-2 mt-2 sm:mt-0 self-center sm:self-auto">
             <button
               className="p-1 sm:p-2 rounded cursor-pointer transition"
               title="Options"
